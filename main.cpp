@@ -1,58 +1,9 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <iomanip>
-#include <functional>
 #include <map>
 
-struct Process {
-    int pID;
-    int arrivalTime;
-    int priority;
-    int burstTime;
-    int startTime{};
-    int finishTime{};
-    int turnaroundTime{};
-    int waitTime{};
-
-    Process(const int pID, const int arrivalTime, const int priority, const int burstTime)
-            : pID(pID), arrivalTime(arrivalTime), priority(priority), burstTime(burstTime){}
-};
-
-void printResults(std::vector<Process>& pv) {
-    int width = 20;
-    std::sort(pv.begin(), pv.end(), [](const Process& a, const Process& b) {
-        return a.pID < b.pID;
-    });
-
-    // the format we'll be using to print out the tables
-    std::vector<std::pair<std::string, const int Process::*>> properties = {
-            {"pID:", &Process::pID},
-            {"Arrival Time", &Process::arrivalTime},
-            {"Priority", &Process::priority},
-            {"Burst Time", &Process::burstTime},
-            {"Start Time", &Process::startTime},
-            {"Finish Time", &Process::finishTime},
-            {"TAT", &Process::turnaroundTime},
-            {"Wait Time", &Process::waitTime}
-
-    };
-
-    // print header row of table
-    for (const auto& prop: properties) {
-        std::cout << std::setw(width) << std:: left << prop.first;
-    }
-    std::cout << "\n";
-
-    // print data rows of table
-    for (const auto& process: pv) {
-        for (const auto& prop: properties) {
-            std::cout << std::setw(width) << std::left << process.*(prop.second);
-        }
-        std::cout << "\n";
-    }
-    std::cout << "\n";
-}
+#include "otherFuncs.h"
 
 void fcfs(std::vector<Process> pv) {
     // sort all processes by arrival time

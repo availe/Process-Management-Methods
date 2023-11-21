@@ -30,3 +30,17 @@
 *.exe
 *.out
 *.app
+
+# file: ~/.gitignore_global
+.DS_Store
+.idea
+
+# CMake generated files
+build/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+
+cmake-build*/*
